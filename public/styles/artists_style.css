@@ -1,0 +1,165 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    background-color: #001220;
+    color: white;
+    font-family: system-ui;
+}
+
+nav {
+    transform: skewY(-3deg);
+    position: absolute;
+    top: 25px;
+    z-index: 1;
+    width: 100%;
+    padding-inline: 70px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    background-color: rgba(0, 30, 53, 0.8);
+    padding: 15px 10px;
+    border-radius: 40px;
+}
+
+nav ul li a {
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-image: linear-gradient(45deg, #12c29e, #c471ed, #f64f59);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#info-card {
+    margin-top: 200px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    isolation: isolate;
+    
+    padding-block: 100px;
+}
+
+#info-card h1, #contacts h1 {
+    font-size: 4rem;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.name p, .description p {
+    background-color: #001220;
+    padding: 30px;
+    margin-top: 10px;
+}
+
+img {
+    display: block;
+    height: 100%;
+    width: 500px;
+    
+    transform: skewY(-3deg);
+}
+
+.image {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    isolation: isolate;
+    font-size: 1.2rem;
+    
+    margin-top: -55px;
+    padding: 70px 150px;
+}
+
+.image::after {
+    content: '';
+    background-color: #001220;
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    transform: skewY(-3deg);
+}
+
+
+#info-card::after, #contacts::after {
+    content: '';
+    background-image: linear-gradient(45deg, #12c29e, #c471ed, #f64f59);
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    transform: skewY(-3deg);
+}
+
+#info-card a {
+    margin: 0 auto;
+    text-align: center;
+    width: 270px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    background-color: #001220;
+    color: white;
+    padding: 20px 30px;
+}
+
+#info-card a:hover {
+    box-shadow: 0px 0px 25px -1px white;
+    background-image: linear-gradient(45deg, #f64f59, #c471ed, #12c29e);
+    
+    transition: all 0.2s ease-in-out;
+}
+
+#contacts {
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    isolation: isolate;
+    padding-block: 100px;
+    font-size: 1.2rem;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.contacts a {
+    color: white;
+}

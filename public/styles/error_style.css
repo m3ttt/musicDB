@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    background-color: #001220;
+    color: white;
+    font-family: system-ui;
+}
+
+#error {
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+#error p {
+    text-align: center;
+    max-width: 800px;
+    color: white;
+    font-size: 4rem;
+}
+
+#error a {
+    display: block;
+    font-size: 2rem;
+    text-decoration: none;
+    padding: 20px 30px;
+    border-radius: 10px;
+    color: white;
+    background-image: linear-gradient(45deg, #12c29e, #c471ed, #f64f59);
+}

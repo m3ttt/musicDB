@@ -1,0 +1,59 @@
+<%- include('./partials/artists_head.ejs') %>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="#info-card">Artist info</a></li>
+            <li><a href="#contacts">Artist contacts</a></li>
+        </ul>
+    </nav>
+
+    <%#
+            Utilizziamo data[0] e non un forEach,
+            perché lo username all'interno del database possiede carattere UNIQUE,
+            quindi esiste solo un record unico nel database con quello username
+    %>
+
+    <section id="info-card">
+        
+        <div class="infos">
+            <h1><%= data[0].username %></h1>
+
+            <div class="name">
+                <h2>Full name</h2>
+                <p><%= data[0].name %> <%= data[0].surname %></p>
+            </div>
+            <div class="description">
+                <h2>Description</h2>
+                <p><%= data[0].description %></p>
+            </div>
+            <a href="<%= data[0].username %>/songs">View <%= data[0].username %>'s songs</a>
+        </div>
+        
+        <% 
+            // tolgo spazi nella stringa e la scrivo in lowecase
+            imgName = data[0].username.replace(/ +/g, "").toLowerCase() + '.png'
+        %>
+        <div class="image">
+            <img src="<%= '../images/artists/' + imgName %>" alt="<%= data[0].username %>" draggable="false">
+        </div>
+        
+    </section>
+    
+    <section id="contacts">
+        <h2>Artist Contacts</h2>
+        <div class="contacts">
+            <p>E-mail: <a href="mailto:<%= data[0].email %>"><%= data[0].email %></a></p>
+            
+            <p>Telephone: <a href="tel:<%= data[0].telephone %>"><%= data[0].telephone %></a></p>
+        </div>
+    </section>
+
+    <script>
+        // Quando renderizzo la pagina, vado alla sezione passata nel parametro hash
+        window.onload = function() {
+            window.location.hash = '<%= hash %>';
+        };
+    </script>
+</body>
+<%- include('./partials/footer.ejs') %>

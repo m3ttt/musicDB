@@ -1,0 +1,114 @@
+<%- include('./partials/head.ejs') %>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home" draggable="false">Home</a></li>
+            <li><a href="#input" draggable="false">Search</a></li>
+            <li><a href="#hot-hits" draggable="false">Hot Hits</a></li>
+            <li><a href="#socials" draggable="false">Socials</a></li>
+        </ul>
+    </nav>
+    
+
+    <div id="home" class="front">
+        <h1>MusicDB</h1>
+        <a href="#input">Search your music now!</a>
+    </div>
+
+    <section id="input">
+        <h1>What are you looking for?</h1>
+        <div class="inputs">
+            
+            <form id="search-form" method="get">
+                <input type="text" id="search-input" autocomplete="off" required>
+            </form>
+
+            <div class="labels">
+                <input type="radio" id="artist-search" name="search-type" checked>
+                <label for="artist-search" id="artist-radio-label">Artist</label>
+    
+                <input type="radio" id="song-search" name="search-type">
+                <label for="song-search" id="song-radio-label">Song</label>
+            </div>
+
+        </div>
+    </section>
+
+    
+    
+    
+
+    <section id="hot-hits">
+        <div class="top">
+            <h1>🔥 Hot Hits 🔥</h1>
+            <div class="rank">
+            <% let i = 1 %>
+            <% data.forEach(item => { %>
+                <% if (i === 1) { %>
+                    <input type="radio" class="slide" name="slide" id="<%= 'c' + i %>" checked>
+                <% } else {%>
+                    <input type="radio" class="slide" name="slide" id="<%= 'c' + i %>">
+                <% } %>
+                <label for="<%= 'c' + i %>"
+                    class="card"
+                    style="background-image: url(<%= "images/songs/" + item.title.replace(/ +/g, '_').toLowerCase() + ".jpg" %>);
+                        background-position: center;
+                    ">
+                
+
+                    <div class="row">
+                        <div class="icon"><%= i %></div>
+                        <div class="description">
+                            <h4><%= item.title %></h4>
+                            <p><%= item.username %></p>
+                        </div>
+                    </div>
+                </label>
+                
+                <% i+=1 %>
+            <% }) %>
+            </div>
+        </div>
+        
+    </section>
+
+    <footer id="socials">
+        <h1>Socials</h1>
+        <div>
+            <a>Instagram</a>
+            <a>Facebook</a>
+            <a>Twitter</a>
+            <a href="https://www.flaticon.com/free-icon/music-notes_476799?term=music&page=1&position=91&origin=tag&related_id=476799" target="_blank" title="music icons">Favicon created by Freepik - Flaticon</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const artistRadio = document.getElementById('artist-search');
+            const songRadio = document.getElementById('song-search');
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+        
+            function toggleForms() {
+                if (artistRadio.checked) {
+                    searchForm.action = 'api/artists';
+                    searchInput.name = 'username';
+                    searchInput.placeholder = 'Search artist username...';
+                } else if (songRadio.checked) {
+                    searchForm.action = 'api/songs';
+                    searchInput.name = 'title';
+                    searchInput.placeholder = 'Search song title...';
+                }
+            }
+        
+            artistRadio.addEventListener('change', toggleForms);
+            songRadio.addEventListener('change', toggleForms);
+        
+            // La funzione all'inizio viene richiamata per impostare lo stato iniziale
+            toggleForms();
+        });
+    </script>
+        
+        
+</body>
+<%- include('./partials/footer.ejs') %>

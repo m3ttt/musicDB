@@ -1,0 +1,65 @@
+<%- include('./partials/songs_head.ejs') %>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../..">Home</a></li>
+            <% if(!fromSongPage) { %>
+                <li><a href="#song-cards">Songs</a></li>
+            <% } else { %>
+                <li><a href="#song-cards">Song info</a></li>
+            <% } %>
+        </ul>
+    </nav>
+
+    <% if(!fromSongPage) { %>
+        <div class="title">
+            <h1 class="title"><%= title %>'s songs</h1>
+        </div>
+    <% } else { %>
+        <style>
+            #song-cards {
+                margin-top: 200px;
+            }
+        </style>
+    <% } %>
+    
+    <section id="song-cards">
+        <% data.forEach(song => { %>
+            <div class="song-info">
+                <h1><%= song.title %></h1>
+                <h2>Featured artists</h2>
+                
+                <p>
+                    <%
+                        let str = song.artists.replace(',', ', ')
+                        str.split(', ').forEach((artist, index, array) => {
+                    %>
+                        <a href="<%= fromSongPage ? './artists?username=' : '../artists?username=' %><%= artist %>"><%= artist %></a><% if (index < array.length - 1) { %>, <% } %>
+                    <% }) %>
+                </p>
+
+                <h2>Genre</h2>
+                <p><%= song.genre %></p>
+
+                <h2>Duration</h2>
+                <p><%= song.duration %></p>
+                
+                <h2>Album name</h2>
+                <p><%= song.album_name %></p>
+
+                <!-- <p><%= song.hot_hit %></p> -->
+            </div>
+            
+            <% 
+                    // sostituisco gli spazi con _ nella stringa e la scrivo in lowecase
+                    imgName = song.title.replace(/ +/g, "_").toLowerCase() + '.jpg'
+                %>
+            <div class="image">
+                <img src="<%= fromSongPage ? '../images/songs/' : '../../images/songs/' %><%= imgName %>" alt="<%= song.title %> cover" draggable="false">
+            </div>
+
+        <% }) %>
+    </section>
+    
+</body>
+<%- include('./partials/footer.ejs') %>
